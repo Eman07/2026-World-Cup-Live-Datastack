@@ -1,0 +1,54 @@
+name: CD - deploy dbt on merge
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "wc2026_dbt/**"
+
+jobs:
+  dbt-deploy:
+    name: Deploy dbt to production
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dbt
+        run: pip install dbt-snowflake
+
+      - name: Write profiles.yml
+        run: |
+          cat > ./wc2026_dbt/wc2026/profiles.yml << EOF
+          wc2026:
+            target: prod
+            outputs:
+              prod:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                role: ${{ secrets.SNOWFLAKE_ROLE }}
+                warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+                database: ${{ secrets.SNOWFLAKE_DATABASE }}
+                schema: STAGING
+                threads: 4
+          EOF
+
+      - name: dbt deps
+        working-directory: ./wc2026_dbt/wc2026
+        run: dbt deps
+
+      - name: dbt run
+        working-directory: ./wc2026_dbt/wc2026
+        run: dbt run --profiles-dir .
+
+      - name: dbt test
+        working-directory: ./wc2026_dbt/wc2026
+        run: dbt test --profiles-dir .
