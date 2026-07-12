@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+wc2026_dbt/target/
+wc2026_dbt/dbt_packages/
+docker/logs/
+streamlit_app/.streamlit/secrets.toml
