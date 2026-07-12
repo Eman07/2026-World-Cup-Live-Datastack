@@ -102,7 +102,7 @@ leaderboard with goals per game ratios and goal contributions.
 ## Dashboard Screenshots
 
 Match results showing all finished games with home/away/draw outcomes:
-![Match Results](assets/MatchResults)
+![Match Results](assets/MatchResults.png)
 
 Group standings broken down per group with points, goal difference, and wins:
 ![Group Standings](assets/Groups.png)
