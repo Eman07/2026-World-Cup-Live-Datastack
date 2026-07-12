@@ -5,3 +5,8 @@ wc2026_dbt/target/
 wc2026_dbt/dbt_packages/
 docker/logs/
 streamlit_app/.streamlit/secrets.toml
+.DS_Store
+.Rhistory
+docker/minio/data/
+logs/
+wc2026_dbt/logs/
