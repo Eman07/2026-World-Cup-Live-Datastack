@@ -99,6 +99,20 @@ match results with home/away/draw outcomes, group standings with points and goal
 difference, team performance comparing goals scored vs conceded, and a top scorers 
 leaderboard with goals per game ratios and goal contributions.
 
+## Dashboard Screenshots
+
+Match results showing all finished games with home/away/draw outcomes:
+![Match Results](assets/MatchResults)
+
+Group standings broken down per group with points, goal difference, and wins:
+![Group Standings](assets/Groups.png)
+
+Team performance comparing total goals scored vs conceded across the tournament:
+![Team Performance](assets/Performance.png)
+
+Top scorers leaderboard with goals per game ratio and goal contributions:
+![Top Scorers](assets/TopScorers.png)
+
 
 ## What I learned
 
